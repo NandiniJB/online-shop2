@@ -1,0 +1,60 @@
+  {% include "header.html" %}
+  {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        {% for message in messages %}
+          <p class="alert alert-danger">{{ message }}</p>
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
+    <div id="all">
+      <div id="content">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12">
+              <div id="main-slider" class="owl-carousel owl-theme">
+                <div class="item"><img src="https://img.freepik.com/free-vector/online-shopping-banner_82574-3393.jpg" alt="" class="img-fluid"></div>
+                <div class="item"><img src="https://thumbs.dreamstime.com/b/happy-beautiful-young-woman-blue-dress-hand-holding-shopping-bags-looking-light-banner-background-copy-space-169293855.jpg" alt="" class="img-fluid"></div>
+              </div>
+              <!-- /#main-slider-->
+            </div>
+          </div>
+        </div>
+        <div id="hot">
+          <div class="box py-4">
+            <div class="container">
+              <div class="row">
+                <div class="col-md-12">
+                  <h2 class="mb-0">Clothing</h2>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container">
+            <div class="product-slider owl-carousel owl-theme">
+              {% for product in products %}
+                <div class="item">
+                  <div class="product">
+                    <div class="flip-container">
+                      <div class="flipper">
+                        <div class="front"><a href="{{ url_for('details', id=product.id) }}"><img src="{{ product.image_url }}" alt="" class="img-fluid"></a></div>
+                        <div class="back"><a href="{{ url_for('details', id=product.id) }}"><img src="{{ product.image_url }}" alt="" class="img-fluid"></a></div>
+                      </div>
+                    </div>
+                    <a href="{{ url_for('details', id=product.id) }}" class="invisible"><img src="{{ product.image_url }}" alt="" class="img-fluid"></a>
+                    <div class="text">
+                      <h3><a href="{{ url_for('details', id=product.id) }}">{{ product.name }}</a></h3>
+                      <p class="price">
+                        &#x20b9; {{ product.price }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% include "footer.html" %}

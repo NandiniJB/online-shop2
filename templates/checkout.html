@@ -1,0 +1,59 @@
+{% include "header.html" %}
+    <div id="all">
+      <div id="content">
+        <div class="container">
+          <div class="row">
+            <div id="checkout" class="col-lg-12">
+              <div class="box">
+                <form method="POST" action="{{ url_for('create_checkout_session') }}">
+                  <h1>Checkout - Order review</h1>
+                  <div class="nav flex-column flex-md-row nav-pills text-center">
+                    <a href="checkout-address.html" class="nav-link flex-sm-fill text-sm-center disabled"><i class="fa fa-map-marker"></i>Address</a>
+                    <a href="#" class="nav-link flex-sm-fill text-sm-center active "> <i class="fa fa-eye"></i>Order Review</a>
+                  </div>
+                  <div class="content">
+                    <div class="table-responsive">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th colspan="2">Product</th>
+                            <th>Quantity</th>
+                            <th>Unit price</th>
+                            <th>Total</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                        {% for cart_item in cart_items %}
+                          <tr>
+                            <td><a href="#"><img src="{{ cart_item.product.image_url }}" alt="{{ cart_item.product.name }}"></a></td>
+                            <td><a href="#">{{ cart_item.product.name }}</a></td>
+                            <td>{{ cart_item.quantity }}</td>
+                            <td>&#x20b9; {{ cart_item.product.price }}</td>
+                            <td>&#x20b9; <span class="sum">{{ cart_item.product.price * cart_item.quantity }}</span></td>
+                          </tr>
+                        {% endfor %}
+                        </tbody>
+                        <tfoot>
+                          <tr>
+                            <th colspan="4">Total</th>
+                            <th>&#x20b9; <span class="grand_total"></span></th>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </div>
+                    <!-- /.table-responsive-->
+                  </div>
+                  <!-- /.content-->
+                  <div class="box-footer d-flex justify-content-between"><a href="{{ url_for('checkout_address') }}" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i>Back to checkout address</a>
+                    <input type="hidden" id="amount" name="amount" value="">
+                    <button type="submit" class="btn btn-primary">Place an order<i class="fa fa-chevron-right"></i></button>
+                  </div>
+                </form>
+              </div>
+              <!-- /.box-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% include "footer.html" %}

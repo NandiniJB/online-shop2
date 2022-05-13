@@ -1,0 +1,80 @@
+{% include "header.html" %}
+    <div id="all">
+      <div id="content">
+        <div class="container">
+          <div class="row">
+            <div id="checkout" class="col-lg-12">
+              <div class="box">
+                <form method="post" action="{{ url_for('checkout') }}">
+                  <h1>Checkout - Address</h1>
+                  <div class="nav flex-column flex-md-row nav-pills text-center">
+                    <a href="checkout-address.html" class="nav-link flex-sm-fill text-sm-center active"><i class="fa fa-map-marker"></i>Address</a>
+                    <a href="#" class="nav-link flex-sm-fill text-sm-center disabled"> <i class="fa fa-eye"></i>Order Review</a>
+                  </div>
+                  <div class="content py-3">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="firstname">Firstname</label>
+                          <input id="firstname" name="firstname" type="text" class="form-control" value="{{ checkout_address.first_name }}">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="lastname">Lastname</label>
+                          <input id="lastname" name="lastname" type="text" class="form-control" value="{{ checkout_address.last_name }}">
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.row-->
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="street">Street</label>
+                          <input id="street" name="street" type="text" class="form-control" value="{{ checkout_address.street }}">
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="city">City</label>
+                          <input id="city" name="city" type="text" class="form-control" value="{{ checkout_address.city }}">
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.row-->
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="state">State</label>
+                          <input id="state" name="state" class="form-control" value="{{ checkout_address.state }}">
+                        </div>
+                      </div>
+                      <div class="col-md-6 ">
+                        <div class="form-group">
+                          <label for="country">Country</label>
+                          <input id="country" name="country" class="form-control" value="{{ checkout_address.country }}">
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="pincode">PinCode</label>
+                          <input id="pincode" name="pincode" type="text" class="form-control" value="{{ checkout_address.pincode }}">
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.row-->
+                  </div>
+                  <div class="box-footer d-flex justify-content-between"><a href="{{ url_for('cart') }}" class="btn btn-outline-secondary"><i class="fa fa-chevron-left"></i>Back to Basket</a>
+                    <button type="submit" class="btn btn-primary">Continue to Checkout<i class="fa fa-chevron-right"></i></button>
+                  </div>
+                </form>
+              </div>
+              <!-- /.box-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% include "footer.html" %}

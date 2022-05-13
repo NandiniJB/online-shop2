@@ -1,0 +1,64 @@
+{% include "header.html" %}
+    <div id="all">
+      <div id="content">
+        <div class="container">
+          <div class="row d-flex justify-content-center">
+            <div class="col-lg-12">
+              {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                  {% for message in messages %}
+                    <p class="alert alert-danger">{{ message }}</p>
+                  {% endfor %}
+                {% endif %}
+              {% endwith %}
+              {% block body %}{% endblock %}
+              <!-- breadcrumb-->
+            </div>
+            <div class="col-lg-6">
+              <div class="box">
+                <h1>New account</h1>
+                <p class="lead">Not our registered customer yet?</p>
+                <p>With registration with us new world of fashion, fantastic discounts and much more opens to you! The whole process will not take you more than a minute!</p>
+                <hr>
+                <form action="{{ url_for('register') }}" method="post" novalidate>
+                  {{form.csrf_token}}
+                  <div class="form-group">
+                    {{form.name.label}}<br>
+                    {{form.name(class='form-control')}}
+                    {% for err in form.name.errors %}
+                        <span class="errors">{% for error in form.name.errors %}<p class="text-danger">{{ error }}</p>{% endfor %}</span>
+                    {% endfor %}
+                  </div>
+                  <div class="form-group">
+                    {{form.email.label}}<br>
+                    {{form.email(class='form-control')}}
+                    {% for err in form.email.errors %}
+                        <span class="errors">{% for error in form.email.errors %}<p class="text-danger">{{ error }}</p>{% endfor %}</span>
+                    {% endfor %}
+                  </div>
+                  <div class="form-group">
+                    {{form.phone.label}}<br>
+                    {{form.phone(class='form-control')}}
+                    {% for err in form.phone.errors %}
+                        <span class="errors">{% for error in form.phone.errors %}<p class="text-danger">{{ error }}</p>{% endfor %}</span>
+                    {% endfor %}
+                  </div>
+                  <div class="form-group">
+                    {{form.password.label}}<br>
+                    {{form.password(class='form-control')}}
+                    {% for err in form.password.errors %}
+                        <span class="errors">{% for error in form.password.errors %}<p class="text-danger">{{ error }}</p>{% endfor %}</span>
+                    {% endfor %}
+                  </div>
+                  <div class="text-center">
+                    {{form.submit(class="btn btn-primary")}}
+<!--                    <button type="submit" class="btn btn-primary"><i class="fa fa-user-md"></i> Register</button>-->
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+{% include "footer.html" %}
